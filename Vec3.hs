@@ -12,7 +12,8 @@ instance Num a => Num (Vec3 a) where
   fromInteger v = Vec3 {x=fromInteger v, y=0, z=0}
   signum (Vec3 {x, y, z}) = Vec3 {x=signum x, y=signum y, z=signum z}
 
-instance Integral a => Ord (Vec3 a) where
+
+instance (Num a, Ord a) => Ord (Vec3 a) where
   (<=) (Vec3 {x=x1, y=y1}) (Vec3 {x=x2, y=y2}) =
     case (x1==x2, y1==y2) of
       (True, True) -> (x1*x1 + y1*y1) <= (x2*x2 + y2*y2)
@@ -34,3 +35,5 @@ sqDistance v1 v2 =
   in xd*xd + yd*yd + zd*zd
 
 
+toList :: Vec3 a -> [a]
+toList v = [x v, y v, z v]

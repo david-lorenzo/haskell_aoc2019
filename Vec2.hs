@@ -13,7 +13,7 @@ instance Num a => Num (Vec2 a) where
   signum (Vec2 {x, y}) = Vec2 {x=signum x, y=signum y}
 
 
-instance Integral a => Ord (Vec2 a) where
+instance (Num a, Ord a) => Ord (Vec2 a) where
   (<=) (Vec2 {x=x1, y=y1}) (Vec2 {x=x2, y=y2}) =
     case (x1==x2, y1==y2) of
       (True, True) -> (x1*x1 + y1*y1) <= (x2*x2 + y2*y2)
@@ -34,6 +34,9 @@ sqDistance v1 v2 =
   let xd = x v1 - x v2
       yd = y v1 - y v2
   in xd*xd + yd*yd
+
+toList :: Vec2 a -> [a]
+toList v = [x v, y v]
 
 
 normVec2 :: Integral a => Vec2 a -> Vec2 a
