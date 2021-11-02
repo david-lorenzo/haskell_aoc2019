@@ -55,13 +55,12 @@ stepWorld :: [Moon] -> [Moon]
 stepWorld ms = stepMoon <$> ms <*> [ms]
 
 
--- data SystemCycles = SystemCycles {
-
 data Axis = Axis {
                    axisX :: [Int],
                    axisY :: [Int],
                    axisZ :: [Int]
                  } deriving (Eq, Show, Ord)
+
 
 axis :: [Moon] -> Axis
 axis ms = Axis mx my mz where
@@ -93,21 +92,31 @@ storeState states axis = CycleStates newCX newCY newCZ newFlags where
 
 main = do
   -- args: inputfile number_iterations
-  -- args: data/input12.txt 1000
-  inputFilePath:iterations:_ <- getArgs
-  let n = (read iterations) :: Int
+  -- args: data/input12.txt
+  inputFilePath:_ <- getArgs
   -- parsing input data
   inputData <- lines <$> readFile inputFilePath
   let moons = map line2Vec3 inputData
   let results0 = take 3  $ map axis $ iterate stepWorld moons
   -- calculating result
-  let cycleInfo = head $ dropWhile (not . (all id) . cyclesFlags) $ scanl' storeState emptyCycleState $ map axis $ iterate stepWorld moons
-  let sizex = S.size . cyclesX $ cycleInfo
-  let sizey = S.size . cyclesY $ cycleInfo
-  let sizez = S.size . cyclesZ $ cycleInfo
-  let solution = lcm sizex $ lcm sizey sizez
-  print ("sizex", sizex)
-  print ("sizey", sizey)
-  print ("sizez", sizez)
-  print ("solution", solution)
+  let cycleInfo = moons                                     &
+                  -- moving the moons step by step
+                  iterate stepWorld                         &
+                  -- extracting the values of the moons properties for
+                  -- each of the axis
+                  map axis                                  &
+                  -- indexing each of the axis states in sets
+                  scanl' storeState emptyCycleState         &
+                  -- drop all the elements until the three axis
+                  -- start to cycle their states
+                  dropWhile (not . (all id) . cyclesFlags)  &
+                  -- taking the first element
+                  head
+  -- each axis has its own cycle the solution will be the
+  -- least common multiple of the number of states of each axis
+  let solution = let sizex = S.size . cyclesX $ cycleInfo
+                     sizey = S.size . cyclesY $ cycleInfo
+                     sizez = S.size . cyclesZ $ cycleInfo
+                 in foldl1 lcm [sizex, sizey, sizez]
+  print solution
   return ()
