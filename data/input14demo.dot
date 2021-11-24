@@ -1,0 +1,12 @@
+digraph {
+	ORE -> A [label="10:10"];
+	ORE -> B [label="1:1"];
+	A -> C [label="7:1"];
+	B -> C [label="1:1"];
+	A -> D [label="7:1"];
+	C -> D [label="1:1"];
+	A -> E [label="7:1"];
+	D -> E [label="1:1"];
+	A -> FUEL [label="7:1"];
+	E -> FUEL [label="1:1"];
+}

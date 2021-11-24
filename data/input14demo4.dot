@@ -1,0 +1,32 @@
+digraph {
+	VPVL -> STKFG [label="2:1"];
+	FWMGM -> STKFG [label="7:1"];
+	CXFTF -> STKFG [label="2:1"];
+	MNCFX -> STKFG [label="11:1"];
+	NVRVD -> VPVL [label="17:8"];
+	JNWZP -> VPVL [label="3:8"];
+	STKFG -> FUEL [label="53:1"];
+	MNCFX -> FUEL [label="6:1"];
+	VJHF -> FUEL [label="46:1"];
+	HVMC -> FUEL [label="81:1"];
+	CXFTF -> FUEL [label="68:1"];
+	GNMV -> FUEL [label="25:1"];
+	VJHF -> FWMGM [label="22:5"];
+	MNCFX -> FWMGM [label="37:5"];
+	ORE -> NVRVD [label="139:4"];
+	ORE -> JNWZP [label="144:7"];
+	MNCFX -> HVMC [label="5:3"];
+	RFSQX -> HVMC [label="7:3"];
+	FWMGM -> HVMC [label="2:3"];
+	VPVL -> HVMC [label="2:3"];
+	CXFTF -> HVMC [label="19:3"];
+	VJHF -> GNMV [label="5:6"];
+	MNCFX -> GNMV [label="7:6"];
+	VPVL -> GNMV [label="9:6"];
+	CXFTF -> GNMV [label="37:6"];
+	ORE -> MNCFX [label="145:6"];
+	NVRVD -> CXFTF [label="1:8"];
+	VJHF -> RFSQX [label="1:4"];
+	MNCFX -> RFSQX [label="6:4"];
+	ORE -> VJHF [label="176:6"];
+}

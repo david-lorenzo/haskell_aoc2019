@@ -1,0 +1,22 @@
+digraph {
+	ORE -> NZVS [label="157:5"];
+	ORE -> DCFZ [label="165:6"];
+	XJWVT -> FUEL [label="44:1"];
+	KHKGT -> FUEL [label="5:1"];
+	QDVJ -> FUEL [label="1:1"];
+	NZVS -> FUEL [label="29:1"];
+	GPVTF -> FUEL [label="9:1"];
+	HKGWZ -> FUEL [label="48:1"];
+	HKGWZ -> QDVJ [label="12:9"];
+	GPVTF -> QDVJ [label="1:9"];
+	PSHF -> QDVJ [label="8:9"];
+	ORE -> PSHF [label="179:7"];
+	ORE -> HKGWZ [label="177:5"];
+	DCFZ -> XJWVT [label="7:2"];
+	PSHF -> XJWVT [label="7:2"];
+	ORE -> GPVTF [label="165:2"];
+	DCFZ -> KHKGT [label="3:8"];
+	NZVS -> KHKGT [label="7:8"];
+	HKGWZ -> KHKGT [label="5:8"];
+	PSHF -> KHKGT [label="10:8"];
+}
